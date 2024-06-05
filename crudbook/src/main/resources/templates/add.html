@@ -21,6 +21,14 @@
        <div class="  w-50  mx-auto rounded p-4 border shadow p-3 mb-5  rounded"  >
         <h3 class="text-center rounded display-6 border p-1 mb-3 text-primary text-opacity-75 ">Add New Book</h3>
         <form method="post" th:object="${product}" th:action="@{/save}">
+          <div th:if="${#fields.hasErrors('all')}">
+            <div class="form-group">
+                <div class="alert alert-danger alert-dismissible fade show">
+                    <label th:errors="*{all}" style="font-size:10px;">xxx</label>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
             <div class="form-group">
                 <label class="mb-1">Code</label>
                 <input type="text" class="form-control" th:field="*{code}" autocomplete="off">

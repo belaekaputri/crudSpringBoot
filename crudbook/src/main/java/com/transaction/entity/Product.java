@@ -7,6 +7,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+
+//kelass model yang dijadikan sebagai representasi menjadi sebuah tabel di database
 @Entity //untuk aktifkan databbase
 @Table(name="tbl_product") //membuat tabel
 public class Product {
@@ -20,17 +22,12 @@ public class Product {
 
     @Column(length=150, nullable = false)
      private String name;
-     
      private double price;
      private int qty;
-
-   
 
 
     public Product() {
     }
-
-   
 
     public Long getId() {
         return this.id;
