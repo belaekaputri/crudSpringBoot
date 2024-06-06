@@ -41,12 +41,12 @@
             <td>
               <a class="btn btn-outline-success" th:href="@{'/edit/'+${product.id}}">Edit</a>
               <a class="btn btn-outline-info" th:href="@{'/detail/'+${product.id}}">Detail</a>
-              <a class="btn btn-outline-danger" th:href="@{'/delete/'+${product.id}}" >Hapus</a>
+              <a class="btn btn-outline-danger" th:href="@{'/delete/'+${product.id}}"  onclick="return confirm('Apakah Anda yakin akan menghapus data?');">Hapus</a>
             </td>
           </tr>
         </tbody>
        </table>
-   
+      
       </div>
    
    
