@@ -19,35 +19,26 @@
   </nav>
       <div class="container mt-3 ">
        <div class="  w-50  mx-auto rounded p-4 border shadow p-3 mb-5  rounded"  >
-        <h3 class="text-center rounded display-6 border p-1 mb-3 text-primary text-opacity-75 ">Edit Book</h3>
-        <form method="post" th:object="${product}" th:action="@{/update}"> <!--memperbaiki sebelumnya save-->
-          <div th:if="${#fields.hasErrors('all')}">
+        <h3 class="text-center rounded display-6 border p-1 mb-3 text-primary text-opacity-75 ">Detail Book</h3>
+        <form method="post" th:object="${product}" >
             <div class="form-group">
-                <div class="alert alert-danger alert-dismissible fade show">
-                    <label th:errors="*{all}" style="font-size:10px;">xxx</label>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            </div>
-        </div>
-          <div class="form-group">
                 <label class="mb-1">Code</label>
-                <input type="text" class="form-control" th:field="*{code}" autocomplete="off">
+                <input type="text" class="form-control" th:field="*{code}" disabled>
             </div>
             <div class="form-group">
                 <label class="mb-1">Name</label>
-                <input type="text" class="form-control" th:field="*{name}"  autocomplete="off">
+                <input type="text" class="form-control" th:field="*{name}"  disabled>
             </div>
             <div class="form-group">
                 <label class="mb-1">Price</label>
-                <input type="number" class="form-control" th:field="*{price}"  autocomplete="off">
+                <input type="number" class="form-control" th:field="*{price}"  disabled>
             </div>
             <div class="form-group">
                 <label class="mb-1">Qty</label>
-                <input type="number" class="form-control" th:field="*{qty}"  autocomplete="off">
+                <input type="number" class="form-control" th:field="*{qty}"  disabled>
             </div>
             <br/>
             <input type="hidden" th:field="*{id}">
-            <p class="text-center"><button class="btn btn-outline-primary w-75 " type="submit">Save</button></p>
         </form>
        </div>
       </div>

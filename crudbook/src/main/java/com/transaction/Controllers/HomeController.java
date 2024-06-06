@@ -29,7 +29,6 @@ public class HomeController {
 
     @GetMapping 
     public String welcome(Model model){ 
-
         String messages = "Welcome"; 
         model.addAttribute("msg", messages);
         model.addAttribute("products", productService.findAll());
@@ -47,9 +46,6 @@ public class HomeController {
         LOGGER.info(product.toString());
         if (errors.hasErrors())
 			return "/add";
-		LOGGER.info(errors.toString());
-		LOGGER.info("" + errors.hasErrors());
-		LOGGER.info("" + errors.hasGlobalErrors());
         try {
             productService.addProduct(product); 
             return "redirect:/";
@@ -58,7 +54,6 @@ public class HomeController {
 			LOGGER.error(e.getMessage());
 			return "/add";
 		}
-     
     }
    
     @GetMapping("/delete/{id}")
@@ -70,15 +65,31 @@ public class HomeController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Long id, Model model) {
        model.addAttribute("product",productService.findById(id));
-
        return "edit"; 
+    }
+    @GetMapping("/detail/{id}")
+    public String detail(@PathVariable("id") Long id, Model model) {
+       model.addAttribute("product",productService.findById(id));
+
+       return "detail"; 
     }
 
     @PostMapping("/update")
-    public String update(Product product, Model model){
-       productService.updateProduct(product);
-       
-        return "redirect:/";
+    public String update( @Valid Product product, Model model, BindingResult errors){
+
+      LOGGER.info(product.toString());
+
+      if (errors.hasErrors())
+      return "/add";
+        try {
+            productService.updateProduct(product);
+            return "redirect:/";
+        } catch (DataAccessException e) {
+            errors.reject("error.object", e.getMessage());
+            LOGGER.error(e.getMessage());
+            return "/edit";
+        }
+      
     }
     
     
